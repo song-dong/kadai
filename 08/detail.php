@@ -1,3 +1,30 @@
+<?php
+$id = $_GET["id"];
+
+//1.  DB接続します
+try {
+  $pdo = new PDO('mysql:dbname=gs_db16;charset=utf8;host=localhost','root','');
+} catch (PDOException $e) {
+  exit('Disable to connect to database.'.$e->getMessage());
+}
+
+//２．データ登録SQL作成
+$stmt = $pdo->prepare("SELECT * FROM gs_user_table WHERE id=:id");
+$stmt->bindValue(':id', $id, PDO::PARAM_INT);
+$status = $stmt->execute();
+
+//３．データ表示
+$view="";
+if($status==false){
+  //execute（SQL実行時にエラーがある場合）
+  $error = $stmt->errorInfo();
+  exit("ErrorQuery:".$error[2]);
+}else{
+  //Selectデータの数だけ自動でループしてくれる
+    $row = $stmt->fetch();
+  }
+?>
+
 <!DOCTYPE html>
 <html lang="ja">
 
@@ -22,16 +49,17 @@
     </header>
 
     <div class="main">
-        <form id="regist" method="post" action="insert.php">
+        <form id="regist" method="post" action="update.php">
             <h2>User Registration Form</h2>
+            <input type="hidden" name="id" value="<?=$id?>">
             <fieldset>
-                <input type="text" placeholder="Name" name="name" required>
+                <input type="text" placeholder="Name" name="name" value="<?=$row["name"]?>">
             </fieldset>
             <fieldset>
-                <input type="text" placeholder="Login ID" name="lid" required>
+                <input type="text" placeholder="Login ID" name="lid" value="<?=$row["lid"]?>">
             </fieldset>
             <fieldset>
-                <input type="text" placeholder="Login Password" name="lpw" required>
+                <input type="text" placeholder="Login Password" name="lpw" value="<?=$row["lpw"]?>">
             </fieldset>
             <fieldset>
                 <input type="radio" name="kanri_flg" value="0">　User　　　
