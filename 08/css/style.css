@@ -73,6 +73,13 @@ fieldset {
 	padding:10px;
 }
 
+.password {
+	width:100%;
+	border:1px solid #CCC;
+	background:#FFF;
+	margin:0 0 5px;
+	padding:10px;
+}
 
 #regist input[type="submit"] {
 	cursor:pointer;
