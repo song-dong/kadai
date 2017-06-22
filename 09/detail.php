@@ -10,7 +10,7 @@ $id = $_GET["id"];
 $pdo = db_con();
 
 //3.SELECT * FROM gs_an_table WHERE id=***; を取得（bindValueを使用！）
-$stmt = $pdo->prepare("SELECT * FROM gs_an_table WHERE id=:id");
+$stmt = $pdo->prepare("SELECT * FROM gs_bm_table WHERE id=:id");
 $stmt->bindValue(":id",$id,PDO::PARAM_INT);
 $status = $stmt->execute();
 
