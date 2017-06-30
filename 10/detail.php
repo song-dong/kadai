@@ -53,7 +53,7 @@ if($status==false){
     <!-- Head[End] -->
 
     <!-- Main[Start] -->
-    <form method="post" action="update.php">
+    <form method="post" action="update.php" enctype="multipart/form-data">
         <input type="hidden" name="id" value="<?=$id?>">
         <div class="jumbotron">
             <fieldset>
@@ -68,7 +68,7 @@ if($status==false){
                         CKEDITOR.replace('editor1');
                     </script>
                 </label><br>
-                <label>添付ファイル：<input type="file" name="filename" value="<?=$row["img"]?>"></label><br>
+                <label>添付ファイル：<input type="file" name="filename"></label><br>
                 <input type="submit" value="ブックマークに登録">
             </fieldset>
         </div>

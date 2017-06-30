@@ -54,9 +54,10 @@ if($status==false){
         <div class="jumbotron">
             <fieldset>
                 <legend>ブックマーク詳細</legend>
+                <label><img src="<?=$row["img"]?>" width=100></label><br>
                 <label>書籍名：<input type="text" name="b_name" value="<?=$row["b_name"]?>" readonly="readonly"></label><br>
                 <label>著者名：<input type="text" name="a_name" value="<?=$row["a_name"]?>" readonly="readonly"></label><br>
-                <label>URL：<textArea name="b_url" rows="1" cols="40" readonly="readonly"><?=$row["b_url"]?></textArea></label><br>
+                <label>URL：<a href="<?=$row["b_url"]?>">Amazonリンク</a></label><br>
                 <label>コメント：<textArea name="comment" rows="4" cols="40" readonly="readonly"><?=$row["comment"]?></textArea></label><br>
             </fieldset>
         </div>
