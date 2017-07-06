@@ -1,12 +1,10 @@
 <?php
+include("functions.php");
+//1.POSTでParamを取得
 $id = $_GET["id"];
 
-//1.  DB接続します
-try {
-  $pdo = new PDO('mysql:dbname=gs_db16;charset=utf8;host=localhost','root','');
-} catch (PDOException $e) {
-  exit('DbConnectError:'.$e->getMessage());
-}
+//2.DB接続など
+$pdo = db_con();
 
 $stmt = $pdo->prepare("DELETE FROM gs_user_table WHERE id=:id");
 $stmt->bindValue(':id', $id, PDO::PARAM_INT);

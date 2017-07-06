@@ -1,12 +1,13 @@
 <?php
+session_start();
+include("functions.php");
+sessChk();
+
+//1.GETでidを取得
 $id = $_GET["id"];
 
-//1.  DB接続します
-try {
-  $pdo = new PDO('mysql:dbname=gs_db16;charset=utf8;host=localhost','root','');
-} catch (PDOException $e) {
-  exit('Disable to connect to database.'.$e->getMessage());
-}
+//2.DB接続など
+$pdo = db_con();
 
 //２．データ登録SQL作成
 $stmt = $pdo->prepare("SELECT * FROM gs_user_table WHERE id=:id");

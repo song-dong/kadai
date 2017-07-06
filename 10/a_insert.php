@@ -1,4 +1,8 @@
 <?php
+session_start();
+include("functions.php");
+sessChk();
+
 //1. POSTデータ取得
 $name = $_POST["name"];
 $lid = $_POST["lid"];
@@ -7,11 +11,7 @@ $kanri_flg = $_POST["kanri_flg"];
 $life_flg = $_POST["life_flg"];
 
 //2. DB接続します
-try {
-  $pdo = new PDO('mysql:dbname=gs_db16;charset=utf8;host=localhost','root','');
-} catch (PDOException $e) {
-  exit('DbConnectError:'.$e->getMessage());
-}
+$pdo = db_con();
 
 //３．データ登録SQL作成
 $stmt = $pdo->prepare("INSERT INTO gs_user_table(id, name, lid, lpw, kanri_flg, life_flg)VALUES(NULL, :name, :lid, :lpw, :kanri_flg, :life_flg)");

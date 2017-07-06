@@ -1,4 +1,8 @@
 <?php
+session_start();
+include("functions.php");
+sessChk();
+
 //1.POSTでParamを取得
 $id = $_POST["id"];
 $name = $_POST["name"];
@@ -8,11 +12,7 @@ $kanri_flg = $_POST["kanri_flg"];
 $life_flg = $_POST["life_flg"];
 
 //2.DB接続など
-try {
-  $pdo = new PDO('mysql:dbname=gs_db16;charset=utf8;host=localhost','root','');
-} catch (PDOException $e) {
-  exit('DbConnectError:'.$e->getMessage());
-}
+$pdo = db_con();
 
 //3.UPDATE gs_user_table SET ....; で更新(bindValue)
 $stmt = $pdo->prepare("UPDATE gs_user_table SET name=:name, lid=:lid, lpw=:lpw, kanri_flg=:kanri_flg, life_flg=:life_flg WHERE id=:id");

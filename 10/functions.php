@@ -3,9 +3,9 @@
 
 //DB接続関数（PDO）
 function db_con(){
-  $dbname='gs_db16';
+  $dbname='beasone_gs_db16';
   try {
-    $pdo = new PDO('mysql:dbname='.$dbname.';charset=utf8;host=localhost','root','');
+    $pdo = new PDO('mysql:dbname='.$dbname.';charset=utf8;host=mysql613.db.sakura.ne.jp','beasone','Sondon2445');
   } catch (PDOException $e) {
     exit('DbConnectError:'.$e->getMessage());
   }
